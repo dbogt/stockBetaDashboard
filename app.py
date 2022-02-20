@@ -322,7 +322,7 @@ aLinks = '''
 '''
 st.markdown(aLinks, unsafe_allow_html=True)
 if st.checkbox("Show PDF slides"):
-    displ_pdf("slides.pdf")
+    displ_pdf("slides-web.pdf")
     
 #Current Price Charts
 st.header('Market Data')
