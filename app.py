@@ -287,10 +287,12 @@ figIndexCandle = go.Figure(data=[go.Candlestick(x=indexDF.index,
                 open=indexDF['Open'], high=indexDF['High'],
                 low=indexDF['Low'], close=indexDF['Close'])
                      ])
+figIndexCandle.update_layout(xaxis_rangeslider_visible=False)
 figStockCandle = go.Figure(data=[go.Candlestick(x=stockDF.index,
                 open=stockDF['Open'], high=stockDF['High'],
                 low=stockDF['Low'], close=stockDF['Close'])
                      ])
+figStockCandle.update_layout(xaxis_rangeslider_visible=False)
 
 figRegr = px.scatter(mergedData, x='Returns_Index', y='Returns_Stock', trendline='ols')
 fig1 = px.line(mergedData, x="Returns_Index", y="Predictions")
