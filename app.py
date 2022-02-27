@@ -21,6 +21,7 @@ import re  #regular expressions
 from io import StringIO, BytesIO
 from urllib.request import Request, urlopen  
 import json
+
 st.set_page_config(layout="wide",page_title='Stock Beta App')
 #%% Import Files
 @st.cache
@@ -282,6 +283,14 @@ ax.set_ylabel(yAxisTitle)
 #Plotly Visualizations
 figIndex = px.line(indexDF, x=indexDF.index, y='Close', title="{} - {}".format(indexTicker, indexName))
 figStock = px.line(stockDF, x=stockDF.index, y='Close', title="{} - {}".format(stockDrop, stockName))
+figIndexCandle = go.Figure(data=[go.Candlestick(x=indexDF.index,
+                open=indexDF['Open'], high=indexDF['High'],
+                low=indexDF['Low'], close=indexDF['Close'])
+                     ])
+figStockCandle = go.Figure(data=[go.Candlestick(x=stockDF.index,
+                open=stockDF['Open'], high=stockDF['High'],
+                low=stockDF['Low'], close=stockDF['Close'])
+                     ])
 
 figRegr = px.scatter(mergedData, x='Returns_Index', y='Returns_Stock', trendline='ols')
 fig1 = px.line(mergedData, x="Returns_Index", y="Predictions")
@@ -331,17 +340,24 @@ liveLinks = '''
 '''.format(stockDrop,stockDrop, stockDrop)
 st.markdown(liveLinks, unsafe_allow_html=True)
 if st.checkbox("Show Summary Charts"):
+    chartType = st.radio("Pick chart type",('Normal','Candlestick'))
     chart1, chart2= st.columns(2)
     with chart1:
         st.metric("{} - {}".format(stockDrop, stockName),
                   "{}{:,.2f}".format(currency,stockPrice),
                   "{:,.2f} ({:.2%})".format(stockPriceChg,stockPctChg/100))
-        st.plotly_chart(figStock)
+        if chartType =='Normal':
+            st.plotly_chart(figStock)
+        else:
+            st.plotly_chart(figStockCandle)
     with chart2:
         st.metric("{} - {}".format(indexTicker, indexName),
                   "{:,.2f}".format(indexPrice),
                   "{:,.2f} ({:.2%})".format(indexPriceChg,indexPctChg/100))
-        st.plotly_chart(figIndex)
+        if chartType =='Normal':
+            st.plotly_chart(figIndex)
+        else:
+            st.plotly_chart(figIndexCandle)
 
 #Regression Outputs
 col6, col7  = st.columns([1,1])
