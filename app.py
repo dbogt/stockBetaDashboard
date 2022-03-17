@@ -36,12 +36,12 @@ def displ_pdf(pdf_file):
     with open(pdf_file,"rb") as f: 
         base64_pdf = base64.b64encode(f.read()).decode('utf-8')
     # pdf_display = f'<embed src="data:application/pdf;base64,{base64_pdf}" width="900" height="1000" type="application/pdf">' 
-    pdf_display = F'<iframe src="data:application/pdf;base64,{base64_pdf}" width="900" height="1000" type="application/pdf"></iframe>'
+    pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="900" height="1000" type="application/pdf"></iframe>'
     st.markdown(pdf_display, unsafe_allow_html=True)
 
 # @st.cache(suppress_st_warning=True)
 def displ_pdf_link(pdf_file):
-    pdf_display = F'<iframe src="{pdf_file}" width="900" height="1000" type="application/pdf"></iframe>'
+    pdf_display = f'<iframe src="{pdf_file}" width="900" height="1000" type="application/pdf"></iframe>'
     st.markdown(pdf_display, unsafe_allow_html=True)
 
 #%% Functions for timestamps    
