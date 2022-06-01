@@ -177,7 +177,7 @@ stocks = ['AAPL','BA','JNJ','KO','MCD','NKE',
           'CGX.TO','SHOP.TO','RY.TO','BMO.TO','BNS.TO','TD.TO','CM.TO','ENB.TO',
           'NEM','GOLD','KGC',
           'TM','7203.T','SONY','6758.T','SFTBY','9984.T']
-indices = ['S&P 500','Russell 2000','FTSE 100','Nikkei 225','Gold','S&P/TSX']
+indices = ['S&P 500','Russell 2000','FTSE 100','Nikkei 225','Gold','S&P/TSX','S&P/ASX']
 intervalsMap = {'Daily':'1d','Weekly':'1wk','Monthly':'1mo'}
 
 st.sidebar.header("Model Assumptions")
@@ -206,7 +206,7 @@ with st.sidebar.form(key='inputs_form'):
 # indexDF = grabDF(indexDrop + ".csv")
 #%% Grab Data
 indexTickersMap = {'S&P 500':"^GSPC",'Russell 2000':'^RUT','FTSE 100':'^FTSE',
-                   'Nikkei 225':'^N225','Gold':'GC=F','S&P/TSX':'^GSPTSE'}
+                   'Nikkei 225':'^N225','Gold':'GC=F','S&P/TSX':'^GSPTSE','S&P/ASX':'STW.AX'}
 indexTicker = indexTickersMap[indexDrop]
 
 #dates formatted for the YFin API
