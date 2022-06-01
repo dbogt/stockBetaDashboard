@@ -229,7 +229,7 @@ stockPctChg = grabPricing(stockDrop, 'regularMarketChangePercent')
 indexPctChg = grabPricing(indexTicker, 'regularMarketChangePercent')
 stockCurrency = grabPricing(stockDrop,'currency')
 
-currencyMap = {'GBp':'GBp','USD':'US$','CAD':'C$','JPY':'¥'}
+currencyMap = {'GBp':'GBp','USD':'US$','CAD':'C$','JPY':'¥','AUD':'A$'}
 currency = currencyMap[stockCurrency]
 
 if st.sidebar.button("Refresh Pricing"):
