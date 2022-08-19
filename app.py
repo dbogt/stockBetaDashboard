@@ -148,13 +148,13 @@ def fnYFinJSON(stock, field):
         return "N/A"
 
 #%% Refresh Pricing Functions    
-@st.cache
+#@st.cache
 def grabPricing(ticker, field):
     fieldValue = fnYFinJSON(ticker, field)
     updateDate()
     return fieldValue
 
-@st.cache
+#@st.cache
 def grabPricingAll(ticker, interval, start, end):
     df = fnYFinHist(ticker, interval, start, end)
     updateDate()
